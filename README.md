@@ -6,6 +6,4 @@ Zum komplilieren:
 
 Zum ausführen:
 
-<code>java -cp einzelhandel\*; einzelhandel.kasse.KasseApp<code>
-
-GP1, VHF
+<code>java -cp einzelhandel\*; einzelhandel.kasse.KasseApp</code>
