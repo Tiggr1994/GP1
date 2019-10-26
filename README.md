@@ -1,11 +1,11 @@
-# GP1
+# GP1 ESA2
 
 Zum komplilieren:
 
-javac -cp einzelhandel\*; einzelhandel\kasse\KasseApp.java
+<code>javac -cp einzelhandel\*; einzelhandel\kasse\KasseApp.java</code>
 
 Zum ausführen:
 
-java -cp einzelhandel\*; einzelhandel.kasse.KasseApp
+<code>java -cp einzelhandel\*; einzelhandel.kasse.KasseApp<code>
 
 GP1, VHF
