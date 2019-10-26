@@ -2,10 +2,10 @@ package einzelhandel.kasse;
 
 /**
 * <p>Die Klasse ArithmeticUnit ist der mathematische Prozessor
-* unseres Tischrechners.</p>
+* unserer Kasse.</p>
 * 
-* @author Steven Tellekamp, Justus Hardtke
-* @version 1.1 24.10.2019
+* @author Steven Tellekamp, Justus Hardtke, Maik Hämpke, Sebastian Naczk, Waqas Daud
+* @version 1.0 26.10.2019
 *
 */
 public class ArithmeticUnit {
@@ -39,7 +39,4 @@ public class ArithmeticUnit {
 
     // Rechnet den einen Bruttopreis in den zugehörigen Nettopreis bei 7% USt. um.
     long brutto2Netto19(long bruttopreis){return bruttopreis/(1+19/100);}
-
-
-
 }

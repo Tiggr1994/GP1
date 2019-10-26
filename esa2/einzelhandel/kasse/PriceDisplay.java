@@ -1,19 +1,14 @@
 package einzelhandel.kasse;
 
 /**
-* <p>Die Klasse TischrechnerController steuert die Aktionen 
-* des Tischrechners. </p>
-* <p>Dies schließt Eingaben und Ausgaben ein.
-* Diese werden von den Objekten der Klasse aber nicht selbst 
-* ausgeführt, sondern nur angestoßen (aufgerufen).</p>
+* <p>Basisklasse um Preise auf einem Ausgabe Gerät dar zu stellen.</p>
 * 
-* @author Steven Tellekamp, Justus Hardtke
-* @version 1.1 24.10.2019
+* @author Steven Tellekamp, Justus Hardtke, Maik Hämpke, Sebastian Naczk, Waqas Daud
+* @version 1.0 26.10.2019
 *
 */
 
 abstract public class PriceDisplay{
 
   abstract public void writeln(String text, long price);
-
 }

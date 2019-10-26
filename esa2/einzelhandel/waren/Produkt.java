@@ -1,11 +1,11 @@
 package einzelhandel.waren;
 
 /**
-* <p>Die Klasse Produkt besitzt einige Klasseneigenschaften, sowie Methoden zum lesen und setzen dieser Eigenschaften.
+* <p>Die Klasse Produkt besitzt einige Eigenschaften, sowie Methoden zum lesen und setzen dieser Eigenschaften.
 </p>
 * 
-* @author Steven Tellekamp, Justus Hardtke
-* @version 1.1 24.10.2019
+* @author Steven Tellekamp, Justus Hardtke, Maik Hämpke, Sebastian Naczk, Waqas Daud
+* @version 1.0 26.10.2019
 *
 */
 
@@ -14,40 +14,38 @@ public class Produkt{
 	private double preisBrutto;
 	private double preisNetto;
 	private String markenName;
-	private String produktname;
+	private String produktName;
 	
 	public Produkt(String markenName, String produktName){
 		this.markenName = markenName;
-		this.produktname = produktName;		
+		this.produktName = produktName;		
 	}
 	
-	public String getmarkenName(){
+	public String getMarkenName(){
 		return markenName;
 	}	
 	
-	public String getproduktName(){
-		return produktname;
+	public String getProduktName(){
+		return produktName;
 	}
 	
-	public double getpreisBrutto(){
+	public double getPreisBrutto(){
 		return preisBrutto;
 	}
 	
-	public double getpreisNetto(){
+	public double getPreisNetto(){
 		return preisNetto;
 	}
 	
-	public void setpreisBrutto(double preis, double steuersatz){
+	public void setPreisBrutto(double preis, double steuersatz){
 		this.preisBrutto = preis * steuersatz;
 	}
 
-	public void setpreisNetto(double preis, double steuersatz){
-		preisNetto = preis * steuersatz;
+	public void setPreisNetto(double preis, double steuersatz){
+		this.preisNetto = preis * steuersatz;
 	}
 	
-	public String toString(String marke, String produkt, double brutto, double satz){
-		
-		return "Markenname: " + marke + " Produktname: " + produkt + " Bruttopreis: " + brutto + " Umsatzsteuersatz: " + satz;
+	public String toString(String marke, String produkt, double brutto, double steuersatz){
+		return "Markenname: " + marke + " Produktname: " + produkt + " Bruttopreis: " + brutto + " Umsatzsteuersatz: " + steuersatz;
 	}
-	
 }
