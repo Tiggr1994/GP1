@@ -1,4 +1,4 @@
-package einzelhandel.kasse;
+package einzelhandel.handelsapp;
 
 import einzelhandel.akteure.*;
 import einzelhandel.waren.*;
@@ -10,8 +10,8 @@ import einzelhandel.waren.*;
 * Diese werden von den Objekten der Klasse aber nicht selbst 
 * ausgeführt, sondern nur angestoßen (aufgerufen).</p>
 * 
-* @author Steven Tellekamp, Justus Hardtke, Maik Hämpke, Sebastian Naczk, Waqas Daud
-* @version 1.0 26.10.2019
+* @author Steven Tellekamp, Justus Hardtke, Maik Hämpke, Sebastian Naczk, Waqas Daud, Katharina Müller
+* @version 1.0 08.11.2019
 *
 */
 public class HandelsController{
@@ -33,16 +33,11 @@ public class HandelsController{
 		ProbeKunde probeKunde = new ProbeKunde(angestellter.getSortiment());
 		System.out.println(">> Neuer Probekunde wurde erzeugt");
 		probeKunde.einkaufen();
-		var length = angestellter.getSortiment().getProdukte().length;
-		var stringInt = Integer.toString(length);
-		System.out.println("Länge: => "+stringInt);
 
 		printSortiment(angestellter.getSortiment().getProdukte());
 		printWarenkorb(probeKunde.getGewaehlteProdukte());
+		//Kassendruck 
 
-
-		System.out.println(">> EINKAUFEN!");
-		//registrierePosten(produkt.getProduktName(), produkt.getPreisBrutto());
 		//System.out.println("\n>>Kunde verlangt Rechnung\n");
 		//Rechnung(produkt);
 		//angestellter.sortimentLeeren();
@@ -50,27 +45,33 @@ public class HandelsController{
 	}
 
 	public void printSortiment(Produkt[] produkte){
+		System.out.println("-------------------");
 		System.out.println("Sortiment:");
 		System.out.println("-------------------");
-		//if(produkte[0] != null){
-			System.out.println("Produktname: "+produkte[0].getProduktName()+ "Markenname: "+ produkte[0].getMarkenName());
-		//} else if(produkte[1] != null){
-			System.out.println("Produktname: "+produkte[1].getProduktName()+ "Markenname: "+ produkte[1].getMarkenName());
-		//}else if(produkte[2] != null){
-			System.out.println("Produktname: "+produkte[2].getProduktName()+ "Markenname: "+ produkte[2].getMarkenName());
-		//}
+		if(produkte[0] != null){
+			System.out.println("Produktname: "+produkte[0].getProduktName()+ " Markenname: "+ produkte[0].getMarkenName());
+		}
+		if(produkte[1] != null){
+			System.out.println("Produktname: "+produkte[1].getProduktName()+ " Markenname: "+ produkte[1].getMarkenName());
+		}
+		if(produkte[2] != null){
+			System.out.println("Produktname: "+produkte[2].getProduktName()+ " Markenname: "+ produkte[2].getMarkenName());
+		}
 		System.out.println("-------------------");
 	}
 
 	public void printWarenkorb(Produkt[] produkte){
+		System.out.println("-------------------");
 		System.out.println("Warenkorb:");
 		System.out.println("-------------------");
 		if(produkte[0] != null){
-			System.out.println("Produktname: "+produkte[0].getProduktName()+ "Markenname: "+ produkte[0].getMarkenName());
-		} else if(produkte[1] != null){
-			System.out.println("Produktname: "+produkte[1].getProduktName()+ "Markenname: "+ produkte[1].getMarkenName());
-		}else if(produkte[2] != null){
-			System.out.println("Produktname: "+produkte[2].getProduktName()+ "Markenname: "+ produkte[2].getMarkenName());
+			System.out.println("Produktname: "+produkte[0].getProduktName()+ " Markenname: "+ produkte[0].getMarkenName());
+		}
+		if(produkte[1] != null){
+			System.out.println("Produktname: "+produkte[1].getProduktName()+ " Markenname: "+ produkte[1].getMarkenName());
+		}
+		if(produkte[2] != null){
+			System.out.println("Produktname: "+produkte[2].getProduktName()+ " Markenname: "+ produkte[2].getMarkenName());
 		}
 		System.out.println("-------------------");
 	}

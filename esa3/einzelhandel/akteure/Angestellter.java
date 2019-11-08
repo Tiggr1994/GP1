@@ -5,8 +5,8 @@ import einzelhandel.waren.*;
 /**
 * <p>Die Klasse Angestellter verwaltet den virtuellen Shop und kann das Sortiment füllen oder leeren.</p>
 * 
-* @author Steven Tellekamp, Justus Hardtke, Maik Hämpke, Sebastian Naczk, Waqas Daud
-* @version 1.0 26.10.2019
+* @author Steven Tellekamp, Justus Hardtke, Maik Hämpke, Sebastian Naczk, Waqas Daud, Katharina Müller
+* @version 1.0 08.11.2019
 *
 */
 
@@ -25,6 +25,7 @@ public class Angestellter{
 		sortiment[0] = PreiseSetzen(sortiment[0]);
 		sortiment[1] = PreiseSetzen(sortiment[1]);
 		sortiment[2] = PreiseSetzen(sortiment[2]);
+		this.sortiment.add(sortiment);
 	}	
 
 	public Sortiment getSortiment(){
@@ -41,7 +42,7 @@ public class Angestellter{
 		String produktName = System.console().readLine();
 		System.out.println("Markenname von Produkt Nr."+produktNummer );
 		String produktMarke = System.console().readLine();
-		return new Produkt(produktName,produktMarke);
+		return new Produkt(produktMarke,produktName);
 	}
 
 	private Produkt PreiseSetzen(Produkt produkt){
@@ -51,7 +52,6 @@ public class Angestellter{
 			String netto = System.console().readLine();
 			try{
 				Double preis = Double.parseDouble(netto);
-				System.out.println(preis);
 				produkt.setPreisNetto(preis, 1);
 				produkt.setPreisBrutto(preis/2,1);
 			}catch(NumberFormatException ex){

@@ -1,14 +1,13 @@
-package einzelhandel.kasse;
+package einzelhandel.handelsapp;
 
 /**
-* @author Steven Tellekamp, Justus Hardtke, Maik Hämpke, Sebastian Naczk, Waqas Daud
-* @version 1.0 26.10.2019
+* @author Steven Tellekamp, Justus Hardtke, Maik Hämpke, Sebastian Naczk, Waqas Daud, Katharina Müller
+* @version 1.0 08.11.2019
 *
 */
 public class HandelsApp2 {
 
   public static void main(String [] args){
-    //new KasseController().run();
     new HandelsController().run();
   }
 }

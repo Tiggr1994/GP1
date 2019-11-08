@@ -42,11 +42,13 @@ public class ProbeKunde{
 	}
 
 	private void produkteWaehlen(int anzahl){
-		if(anzahl >= 1){
+		if(anzahl > 0){
 			this.produkteInWarenkorb[0] = sortiment.getProdukte()[0];
-		}else if(anzahl >= 2){
+		}
+		if(anzahl > 1){
 			this.produkteInWarenkorb[1] = sortiment.getProdukte()[1];
-		}else if(anzahl == 3){
+		}
+		if(anzahl == 3){
 			this.produkteInWarenkorb[2] = sortiment.getProdukte()[2];
 		}
 	}

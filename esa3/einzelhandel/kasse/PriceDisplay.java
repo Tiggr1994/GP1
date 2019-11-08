@@ -1,10 +1,10 @@
-package einzelhandel.kasse;
+package einzelhandel.handelsapp;
 
 /**
 * <p>Basisklasse um Preise auf einem Ausgabe Gerät dar zu stellen.</p>
 * 
-* @author Steven Tellekamp, Justus Hardtke, Maik Hämpke, Sebastian Naczk, Waqas Daud
-* @version 1.0 26.10.2019
+* @author Steven Tellekamp, Justus Hardtke, Maik Hämpke, Sebastian Naczk, Waqas Daud, Katharina Müller
+* @version 1.0 08.11.2019
 *
 */
 
