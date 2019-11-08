@@ -33,6 +33,13 @@ public class HandelsController{
 		ProbeKunde probeKunde = new ProbeKunde(angestellter.getSortiment());
 		System.out.println(">> Neuer Probekunde wurde erzeugt");
 		probeKunde.einkaufen();
+		var length = angestellter.getSortiment().getProdukte().length;
+		var stringInt = Integer.toString(length);
+		System.out.println("Länge: => "+stringInt);
+
+		printSortiment(angestellter.getSortiment().getProdukte());
+		printWarenkorb(probeKunde.getGewaehlteProdukte());
+
 
 		System.out.println(">> EINKAUFEN!");
 		//registrierePosten(produkt.getProduktName(), produkt.getPreisBrutto());
@@ -40,6 +47,32 @@ public class HandelsController{
 		//Rechnung(produkt);
 		//angestellter.sortimentLeeren();
 		//System.out.println("\nEnde");
+	}
+
+	public void printSortiment(Produkt[] produkte){
+		System.out.println("Sortiment:");
+		System.out.println("-------------------");
+		//if(produkte[0] != null){
+			System.out.println("Produktname: "+produkte[0].getProduktName()+ "Markenname: "+ produkte[0].getMarkenName());
+		//} else if(produkte[1] != null){
+			System.out.println("Produktname: "+produkte[1].getProduktName()+ "Markenname: "+ produkte[1].getMarkenName());
+		//}else if(produkte[2] != null){
+			System.out.println("Produktname: "+produkte[2].getProduktName()+ "Markenname: "+ produkte[2].getMarkenName());
+		//}
+		System.out.println("-------------------");
+	}
+
+	public void printWarenkorb(Produkt[] produkte){
+		System.out.println("Warenkorb:");
+		System.out.println("-------------------");
+		if(produkte[0] != null){
+			System.out.println("Produktname: "+produkte[0].getProduktName()+ "Markenname: "+ produkte[0].getMarkenName());
+		} else if(produkte[1] != null){
+			System.out.println("Produktname: "+produkte[1].getProduktName()+ "Markenname: "+ produkte[1].getMarkenName());
+		}else if(produkte[2] != null){
+			System.out.println("Produktname: "+produkte[2].getProduktName()+ "Markenname: "+ produkte[2].getMarkenName());
+		}
+		System.out.println("-------------------");
 	}
   
 	public void registrierePosten(String produktName, double bruttoPreis){
