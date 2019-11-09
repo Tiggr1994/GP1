@@ -16,6 +16,7 @@ public class ProbeKunde{
 
 	private Produkt[] produkteInWarenkorb = new Produkt[3];
 	private Sortiment sortiment;
+	private int algoPosition = 0;
 
 	public ProbeKunde(Sortiment sortiment){
 		this.sortiment = sortiment;
@@ -27,10 +28,10 @@ public class ProbeKunde{
 
 	public void einkaufen(){
 		try{
-		Integer anzahl = produktKaufAnzahlWaehlen();
-		produkteWaehlen(anzahl);
+		int anzahl = produktKaufAnzahlWaehlen();
+		this.produkteWaehlen(anzahl);
 		}catch(IllegalArgumentException ex){
-			System.out.println("Sie haben eine ungültige Eingabe gemacht. Der Vorgang wird wiederholt");
+			System.out.println("Sie haben eine ungültige Eingabe gemacht. Der Vorgang muss wiederholt werden");
 			einkaufen();
 		}
 	}
@@ -42,7 +43,7 @@ public class ProbeKunde{
 	private Integer produktKaufAnzahlWaehlen(){
 		System.out.println("Geben sie die Anzahl der Produkte die sie kaufen möchten an. Die Zahl muss zwischen 1 und 3 liegen");
 		String anzahlString = System.console().readLine();
-		Integer anzahl = Integer.parseInt(anzahlString);
+		int anzahl = Integer.parseInt(anzahlString);
 		if(anzahl < 1 || anzahl > 3){
 			throw new IllegalArgumentException("Die Zahl muss zwischen 1 und 3 liegen");
 		}
@@ -50,14 +51,33 @@ public class ProbeKunde{
 	}
 
 	private void produkteWaehlen(int anzahl){
-		if(anzahl > 0){
-			this.produkteInWarenkorb[0] = sortiment.getProdukte()[0];
+		
+		try{
+			if(anzahl > 0){
+				this.produkteInWarenkorb[algoPosition] = sortiment.getProdukte()[produktPositionWaehlen()];
+				algoPosition++;
+			}
+			if(anzahl > 1){
+				this.produkteInWarenkorb[algoPosition] = sortiment.getProdukte()[produktPositionWaehlen()];
+				algoPosition++;
+			}
+			if(anzahl == 3){
+				this.produkteInWarenkorb[algoPosition] = sortiment.getProdukte()[produktPositionWaehlen()];
+				algoPosition++;
+			}
+		}catch(IllegalArgumentException ex){
+			System.out.println("Sie haben eine ungültige Eingabe gemacht. Der Vorgang muss wiederholt werden");
+			produkteWaehlen(anzahl);
 		}
-		if(anzahl > 1){
-			this.produkteInWarenkorb[1] = sortiment.getProdukte()[1];
+	}
+
+	private int produktPositionWaehlen(){
+		System.out.println("Geben sie die Position des Produktes im Sortiment an. Die zahl muss zwischen 1 und 3 liegen");
+		String anzahlString = System.console().readLine();
+		int position = Integer.parseInt(anzahlString);
+		if(position < 1 || position > 3){
+			throw new IllegalArgumentException("Die Zahl muss zwischen 1 und 3 liegen");
 		}
-		if(anzahl == 3){
-			this.produkteInWarenkorb[2] = sortiment.getProdukte()[2];
-		}
+		return position -1;
 	}
 }
