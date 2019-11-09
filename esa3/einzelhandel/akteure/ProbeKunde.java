@@ -26,8 +26,13 @@ public class ProbeKunde{
 	}
 
 	public void einkaufen(){
+		try{
 		Integer anzahl = produktKaufAnzahlWaehlen();
 		produkteWaehlen(anzahl);
+		}catch(IllegalArgumentException ex){
+			System.out.println("Sie haben eine ungültige Eingabe gemacht. Der Vorgang wird wiederholt");
+			einkaufen();
+		}
 	}
 
 	public Produkt[] getGewaehlteProdukte(){
@@ -38,6 +43,9 @@ public class ProbeKunde{
 		System.out.println("Geben sie die Anzahl der Produkte die sie kaufen möchten an. Die Zahl muss zwischen 1 und 3 liegen");
 		String anzahlString = System.console().readLine();
 		Integer anzahl = Integer.parseInt(anzahlString);
+		if(anzahl < 1 || anzahl > 3){
+			throw new IllegalArgumentException("Die Zahl muss zwischen 1 und 3 liegen");
+		}
 		return anzahl;
 	}
 

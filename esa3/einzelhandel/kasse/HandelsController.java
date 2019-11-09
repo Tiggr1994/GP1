@@ -1,5 +1,8 @@
 package einzelhandel.handelsapp;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import einzelhandel.akteure.*;
 import einzelhandel.waren.*;
 
@@ -36,12 +39,9 @@ public class HandelsController{
 
 		printSortiment(angestellter.getSortiment().getProdukte());
 		printWarenkorb(probeKunde.getGewaehlteProdukte());
-		//Kassendruck 
-
-		//System.out.println("\n>>Kunde verlangt Rechnung\n");
-		//Rechnung(produkt);
-		//angestellter.sortimentLeeren();
-		//System.out.println("\nEnde");
+		
+		rechnungDrucken(probeKunde.getGewaehlteProdukte());
+		kassenDruck(probeKunde.getGewaehlteProdukte());
 	}
 
 	public void printSortiment(Produkt[] produkte){
@@ -84,11 +84,36 @@ public class HandelsController{
 		System.out.println("-------------------");
 	}
 
-	public void Rechnung(Produkt produkt){
-		System.out.println("Rechnung:");
+	public void rechnungDrucken(Produkt[] produkte){
 		System.out.println("-------------------");
-		this.priceDisplayMonitor.writeln(produkt.getProduktName(), (long)produkt.getPreisBrutto());
-		this.priceDisplayStandardPaperRoll.writeln(produkt.getProduktName(), (long)produkt.getPreisBrutto());
+		System.out.println("Vielen Dank für ihren Einkauf");
+		System.out.println("Datum des Einkaufs: " + SimpleDateFormat.getDateInstance().format(new Date()));
+		System.out.println("-------------------");
+		if(produkte[0] != null){
+			this.priceDisplayStandardPaperRoll.writeln(produkte[0].getProduktName(), (long)produkte[0].getPreisBrutto());
+		}
+		if(produkte[1] != null){
+			this.priceDisplayStandardPaperRoll.writeln(produkte[1].getProduktName(), (long)produkte[1].getPreisBrutto());
+		}
+		if(produkte[2] != null){
+			this.priceDisplayStandardPaperRoll.writeln(produkte[2].getProduktName(), (long)produkte[2].getPreisBrutto());
+		}
 		System.out.println("-------------------");
 	}  
+
+	public void kassenDruck(Produkt[] produkte){
+		System.out.println("-------------------");
+		System.out.println("Erkannte Kassen Produkte:");
+		System.out.println("-------------------");
+		if(produkte[0] != null){
+			System.out.println("Produktname: "+produkte[0].getProduktName()+ " Markenname: "+ produkte[0].getMarkenName());
+		}
+		if(produkte[1] != null){
+			System.out.println("Produktname: "+produkte[1].getProduktName()+ " Markenname: "+ produkte[1].getMarkenName());
+		}
+		if(produkte[2] != null){
+			System.out.println("Produktname: "+produkte[2].getProduktName()+ " Markenname: "+ produkte[2].getMarkenName());
+		}
+		System.out.println("-------------------");
+	}
 }
