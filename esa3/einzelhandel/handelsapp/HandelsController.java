@@ -1,4 +1,4 @@
-package einzelhandel.kasse;
+package einzelhandel.handelsapp;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,15 +31,18 @@ public class HandelsController{
 
 	public void run(){
 		Angestellter angestellter = new Angestellter();
-		System.out.println("\n\n>> Neuer Angestellter wurde erzeugt");
+		System.out.println("\n>> Neuer Angestellter wurde erzeugt");
 		angestellter.sortimentFuellen();
+		System.out.println("\n>> Sortiment wurde erzeugt");
 		ProbeKunde probeKunde = new ProbeKunde(angestellter.getSortiment());
 		System.out.println(">> Neuer Probekunde wurde erzeugt");
 		probeKunde.einkaufen();
+		System.out.println(">> Probekunde hat eingekauft");
 
 		printSortiment(angestellter.getSortiment().getProdukte());
 		printWarenkorb(probeKunde.getGewaehlteProdukte());
 
+		System.out.println(">> Probekunde geht an die Kasse");
 		kassenDruck(probeKunde.getGewaehlteProdukte());
 		rechnungDrucken(probeKunde.getGewaehlteProdukte());
 	}

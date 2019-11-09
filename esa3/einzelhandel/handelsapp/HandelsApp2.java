@@ -1,4 +1,4 @@
-package einzelhandel.kasse;
+package einzelhandel.handelsapp;
 
 /**
 * @author Steven Tellekamp, Justus Hardtke, Maik Hämpke, Sebastian Naczk, Waqas Daud, Katharina Müller

@@ -1,4 +1,4 @@
-package einzelhandel.kasse;
+package einzelhandel.handelsapp;
 
 /**
 * <p>Basisklasse um Preise auf einem Ausgabe Gerät dar zu stellen.</p>

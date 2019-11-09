@@ -1,4 +1,4 @@
-package einzelhandel.kasse;
+package einzelhandel.handelsapp;
 
 /**
 * <p>Klasse zur Ausgabe auf dem Monitor.</p>
