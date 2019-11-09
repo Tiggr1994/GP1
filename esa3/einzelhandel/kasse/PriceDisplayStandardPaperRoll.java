@@ -1,4 +1,4 @@
-package einzelhandel.handelsapp;
+package einzelhandel.kasse;
 
 /**
 * <p>Klasse zur Ausgabe auf einer Papierrolle.</p>

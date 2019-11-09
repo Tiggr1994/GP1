@@ -1,4 +1,4 @@
-package einzelhandel.handelsapp;
+package einzelhandel.kasse;
 
 /**
 * <p>Die Klasse ArithmeticUnit ist der mathematische Prozessor

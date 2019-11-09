@@ -1,4 +1,4 @@
-package einzelhandel.handelsapp;
+package einzelhandel.kasse;
 
 
 /**
