@@ -41,7 +41,6 @@ public class ProbeKunde{
 	}
 
 	private Integer produktKaufAnzahlWaehlen(){
-		System.out.println("Geben sie die Anzahl der Produkte die sie kaufen moechten an. Die Zahl muss zwischen 1 und 3 liegen");
 		System.out.println("Geben Sie die Anzahl der Produkte die Sie kaufen moechten an. Die Zahl muss zwischen 1 und 3 liegen");
 		String anzahlString = System.console().readLine();
 		int anzahl = Integer.parseInt(anzahlString);
