@@ -31,7 +31,7 @@ public class ProbeKunde{
 		int anzahl = produktKaufAnzahlWaehlen();
 		this.produkteWaehlen(anzahl);
 		}catch(IllegalArgumentException ex){
-			System.out.println("Sie haben eine ungültige Eingabe gemacht. Der Vorgang muss wiederholt werden");
+			System.out.println("Sie haben eine ungueltige Eingabe gemacht. Der Vorgang muss wiederholt werden");
 			einkaufen();
 		}
 	}
@@ -41,7 +41,7 @@ public class ProbeKunde{
 	}
 
 	private Integer produktKaufAnzahlWaehlen(){
-		System.out.println("Geben sie die Anzahl der Produkte die sie kaufen möchten an. Die Zahl muss zwischen 1 und 3 liegen");
+		System.out.println("Geben sie die Anzahl der Produkte die sie kaufen moechten an. Die Zahl muss zwischen 1 und 3 liegen");
 		String anzahlString = System.console().readLine();
 		int anzahl = Integer.parseInt(anzahlString);
 		if(anzahl < 1 || anzahl > 3){
@@ -66,7 +66,7 @@ public class ProbeKunde{
 				algoPosition++;
 			}
 		}catch(IllegalArgumentException ex){
-			System.out.println("Sie haben eine ungültige Eingabe gemacht. Der Vorgang muss wiederholt werden");
+			System.out.println("Sie haben eine ungueltige Eingabe gemacht. Der Vorgang muss wiederholt werden");
 			produkteWaehlen(anzahl);
 		}
 	}

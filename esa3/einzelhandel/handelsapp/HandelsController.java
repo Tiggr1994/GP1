@@ -22,6 +22,7 @@ public class HandelsController{
 	ArithmeticUnit alu;
 	PriceDisplay priceDisplayMonitor;
 	PriceDisplay priceDisplayStandardPaperRoll;
+	private boolean headerPrinted = false;
 
 	HandelsController(){
 		this.alu                           = new ArithmeticUnit();
@@ -43,8 +44,19 @@ public class HandelsController{
 		printWarenkorb(probeKunde.getGewaehlteProdukte());
 
 		System.out.println(">> Probekunde geht an die Kasse");
-		kassenDruck(probeKunde.getGewaehlteProdukte());
-		rechnungDrucken(probeKunde.getGewaehlteProdukte());
+		Produkt[] produkte = probeKunde.getGewaehlteProdukte();
+		kassenDruck(produkte);
+		if(produkte[0] != null){
+			rechnungDruckenNeu(produkte[0], "", 0, 0, 0, 0);
+		}
+		if(produkte[1] != null){
+			rechnungDruckenNeu(produkte[1], "", 0, 0, 0, 0);
+		}
+		if(produkte[2] != null){
+			rechnungDruckenNeu(produkte[2], "", 0, 0, 0, 0);
+		}
+		rechnungDruckenNeu(null,"Summe", getSumme(produkte), getHighestPrice(produkte), getLowestPrice(produkte), getAveragePrice(produkte));
+		//rechnungDrucken(probeKunde.getGewaehlteProdukte());
 	}
 
 	public void printSortiment(Produkt[] produkte){
@@ -87,36 +99,116 @@ public class HandelsController{
 		System.out.println("-------------------");
 	}
 
-	public void rechnungDrucken(Produkt[] produkte){
+	public void rechnungDrucken(Produkt[] produkt){
 		System.out.println("-------------------");
-		System.out.println("Vielen Dank für ihren Einkauf");
+		System.out.println("Vielen Dank fuer ihren Einkauf");
 		System.out.println("Datum des Einkaufs: " + SimpleDateFormat.getDateInstance().format(new Date()));
 		System.out.println("-------------------");
-		if(produkte[0] != null){
-			this.priceDisplayStandardPaperRoll.writeln(produkte[0].getProduktName(), (long)produkte[0].getPreisBrutto());
+		if(produkt[0] != null){
+			this.priceDisplayStandardPaperRoll.writeln(produkt[0].getProduktName(), (long)produkt[0].getPreisBrutto());
 		}
-		if(produkte[1] != null){
-			this.priceDisplayStandardPaperRoll.writeln(produkte[1].getProduktName(), (long)produkte[1].getPreisBrutto());
+		if(produkt[1] != null){
+			this.priceDisplayStandardPaperRoll.writeln(produkt[1].getProduktName(), (long)produkt[1].getPreisBrutto());
 		}
-		if(produkte[2] != null){
-			this.priceDisplayStandardPaperRoll.writeln(produkte[2].getProduktName(), (long)produkte[2].getPreisBrutto());
+		if(produkt[2] != null){
+			this.priceDisplayStandardPaperRoll.writeln(produkt[2].getProduktName(), (long)produkt[2].getPreisBrutto());
 		}
 		System.out.println("-------------------");
 	}  
 
-	public void kassenDruck(Produkt[] produkte){
+	public void kassenDruck(Produkt[] produkt){
 		System.out.println("-------------------");
 		System.out.println("Erkannte Kassen Produkte:");
 		System.out.println("-------------------");
-		if(produkte[0] != null){
-			System.out.println("Produktname: "+produkte[0].getProduktName()+ " Markenname: "+ produkte[0].getMarkenName());
+		if(produkt[0] != null){
+			System.out.println("Produktname: "+produkt[0].getProduktName()+ " Markenname: "+ produkt[0].getMarkenName());
 		}
-		if(produkte[1] != null){
-			System.out.println("Produktname: "+produkte[1].getProduktName()+ " Markenname: "+ produkte[1].getMarkenName());
+		if(produkt[1] != null){
+			System.out.println("Produktname: "+produkt[1].getProduktName()+ " Markenname: "+ produkt[1].getMarkenName());
 		}
-		if(produkte[2] != null){
-			System.out.println("Produktname: "+produkte[2].getProduktName()+ " Markenname: "+ produkte[2].getMarkenName());
+		if(produkt[2] != null){
+			System.out.println("Produktname: "+produkt[2].getProduktName()+ " Markenname: "+ produkt[2].getMarkenName());
 		}
 		System.out.println("-------------------");
+	}
+
+	public void rechnungDruckenNeu(Produkt produkt, String signalString, double summe, double highestPrice, double lowestPrice, double average){
+		if(!headerPrinted){
+			System.out.println(">>Rechnung wird erstellt");
+			System.out.println("-------------------");
+			System.out.println("Vielen Dank fuer ihren Einkauf");
+			System.out.println("Datum des Einkaufs: " + SimpleDateFormat.getDateInstance().format(new Date()));
+			this.headerPrinted = true;
+		}
+		if(produkt != null){
+			this.priceDisplayStandardPaperRoll.writeln(produkt.getProduktName(),(long)produkt.getPreisNetto());
+		}
+
+		if(signalString == "Summe"){
+			System.out.println("Summe: "+ summe);
+			System.out.println("\n");
+			System.out.println("Billigster Preis: "+ lowestPrice);
+			System.out.println("Teuerster Preis: "+ highestPrice);
+			System.out.println("Durchschnittspreis: "+ average);
+			System.out.println("\n");
+			System.out.println("-------------------");
+			System.out.println("Beehren sie uns bald wieder");
+			System.out.println("-------------------");
+		}
+	}
+
+	public double getHighestPrice(Produkt[] produkt){
+		double highestPrice = Double.MIN_VALUE;
+		if(produkt[0] != null && highestPrice < produkt[0].getPreisNetto()){
+			highestPrice = produkt[0].getPreisNetto();
+		}
+		if(produkt[1] != null && highestPrice < produkt[1].getPreisNetto()){
+			highestPrice = produkt[1].getPreisNetto();
+		}
+		if(produkt[2] != null && highestPrice < produkt[2].getPreisNetto()){
+			highestPrice = produkt[2].getPreisNetto();
+		}
+		return highestPrice;
+	}
+
+	public double getLowestPrice(Produkt[] produkt){
+		double lowestPrice = Double.MAX_VALUE;
+		if(produkt[0] != null && lowestPrice > produkt[0].getPreisNetto()){
+			lowestPrice = produkt[0].getPreisNetto();
+		}
+		if(produkt[1] != null && lowestPrice > produkt[1].getPreisNetto()){
+			lowestPrice = produkt[1].getPreisNetto();
+		}
+		if(produkt[2] != null && lowestPrice > produkt[2].getPreisNetto()){
+			lowestPrice = produkt[2].getPreisNetto();
+		}
+		return lowestPrice;
+	}
+	
+	public double getAveragePrice(Produkt[] produkte){
+		int anzahl = 0;
+		if(produkte[0] != null){
+			anzahl++;
+		}
+		if(produkte[1] != null){
+			anzahl++;
+		}
+		if(produkte[2] != null){
+			anzahl++;
+		}
+		return getSumme(produkte) / anzahl;
+	}
+	public double getSumme(Produkt[] produkte){
+		double summe = 0;
+		if(produkte[0] != null){
+			summe+= produkte[0].getPreisNetto();
+		}
+		if(produkte[1] != null){
+			summe+= produkte[1].getPreisNetto();
+		}
+		if(produkte[2] != null){
+			summe+= produkte[2].getPreisNetto();
+		}
+		return summe;
 	}
 }
