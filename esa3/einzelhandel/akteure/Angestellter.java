@@ -48,26 +48,26 @@ public class Angestellter{
 	private Produkt preiseSetzen(Produkt produkt){
 		Character firstLetter = produkt.getMarkenName().toLowerCase().charAt(0);
 		if(firstLetter >='a' && firstLetter <= 'k'){
-			System.out.println("Bitte geben sie den Nettopreis des Produktes: \"" +produkt.getProduktName() +"\" ein.");
+			System.out.println("Bitte geben Sie den Nettopreis des Produktes: \"" +produkt.getProduktName() +"\" ein.");
 			String netto = System.console().readLine();
 			try{
 				Double preis = Double.parseDouble(netto);
 				produkt.setPreisNetto(preis, 1);
 				produkt.setPreisBrutto(preis/2,1);
 			}catch(NumberFormatException ex){
-				System.out.println("Der Preis darf nur zahlen enthalten. Der Vorgang muss wiederholt werden");
+				System.out.println("Der Preis darf nur Zahlen enthalten. Der Vorgang muss wiederholt werden");
 				preiseSetzen(produkt);
 			}
 		}
 		else{
-			System.out.println("Bitte geben sie den Bruttopreis des Produktes:'"+produkt.getProduktName() + "' ein.");
+			System.out.println("Bitte geben Sie den Bruttopreis des Produktes:'"+produkt.getProduktName() + "' ein.");
 			String brutto = System.console().readLine();
 			try{
 				Double preis = Double.parseDouble(brutto);
 				produkt.setPreisNetto(preis, 2);
 				produkt.setPreisBrutto(preis,1);
 			}catch(NumberFormatException ex){
-				System.out.println("Der Preis darf nur zahlen enthalten. Der Vorgang muss wiederholt werden");
+				System.out.println("Der Preis darf nur Zahlen enthalten. Der Vorgang muss wiederholt werden");
 				preiseSetzen(produkt);
 			}
 		}

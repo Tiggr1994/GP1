@@ -89,7 +89,7 @@ public class HandelsController{
 
 	public void rechnungDrucken(Produkt[] produkte){
 		System.out.println("-------------------");
-		System.out.println("Vielen Dank für ihren Einkauf");
+		System.out.println("Vielen Dank fuer Ihren Einkauf");
 		System.out.println("Datum des Einkaufs: " + SimpleDateFormat.getDateInstance().format(new Date()));
 		System.out.println("-------------------");
 		if(produkte[0] != null){
