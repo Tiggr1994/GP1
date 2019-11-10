@@ -22,9 +22,9 @@ public class Angestellter{
 		sortiment[2] = produktErzeugen(3);
 
 		//Preise setzen
-		sortiment[0] = PreiseSetzen(sortiment[0]);
-		sortiment[1] = PreiseSetzen(sortiment[1]);
-		sortiment[2] = PreiseSetzen(sortiment[2]);
+		sortiment[0] = preiseSetzen(sortiment[0]);
+		sortiment[1] = preiseSetzen(sortiment[1]);
+		sortiment[2] = preiseSetzen(sortiment[2]);
 		this.sortiment.add(sortiment);
 	}	
 
@@ -45,7 +45,7 @@ public class Angestellter{
 		return new Produkt(produktMarke,produktName);
 	}
 
-	private Produkt PreiseSetzen(Produkt produkt){
+	private Produkt preiseSetzen(Produkt produkt){
 		Character firstLetter = produkt.getMarkenName().toLowerCase().charAt(0);
 		if(firstLetter >='a' && firstLetter <= 'k'){
 			System.out.println("Bitte geben sie den Nettopreis des Produktes: \"" +produkt.getProduktName() +"\" ein.");
@@ -55,7 +55,8 @@ public class Angestellter{
 				produkt.setPreisNetto(preis, 1);
 				produkt.setPreisBrutto(preis/2,1);
 			}catch(NumberFormatException ex){
-				System.out.println("Der Preis darf nur zahlen enthalten");
+				System.out.println("Der Preis darf nur zahlen enthalten. Der Vorgang muss wiederholt werden");
+				preiseSetzen(produkt);
 			}
 		}
 		else{
@@ -66,7 +67,8 @@ public class Angestellter{
 				produkt.setPreisNetto(preis, 2);
 				produkt.setPreisBrutto(preis,1);
 			}catch(NumberFormatException ex){
-				System.out.println("Der Preis darf nur zahlen enthalten");
+				System.out.println("Der Preis darf nur zahlen enthalten. Der Vorgang muss wiederholt werden");
+				preiseSetzen(produkt);
 			}
 		}
 		return produkt;
