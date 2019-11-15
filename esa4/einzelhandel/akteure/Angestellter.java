@@ -15,16 +15,18 @@ public class Angestellter{
 	Sortiment sortiment = new Sortiment();
 
 	public void sortimentFuellen(){
-		Produkt[] sortiment = new Produkt[3];
+		Produkt[] sortiment = new Produkt[4];
 		//Produkte konfigurieren
 		sortiment[0] = produktErzeugen(1);
 		sortiment[1] = produktErzeugen(2);
 		sortiment[2] = produktErzeugen(3);
+		sortiment[3] = produktErzeugen(4);
 
 		//Preise setzen
 		sortiment[0] = preiseSetzen(sortiment[0]);
 		sortiment[1] = preiseSetzen(sortiment[1]);
 		sortiment[2] = preiseSetzen(sortiment[2]);
+		sortiment[3] = preiseSetzen(sortiment[3]);
 		this.sortiment.add(sortiment);
 	}	
 
