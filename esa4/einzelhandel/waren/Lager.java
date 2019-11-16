@@ -13,6 +13,17 @@ public class Lager{
 
 	private Produkt[] produkte = new Produkt[4];
 	
+	public void add(Produkt produkt){
+		
+		for (int i = 0; i < 4; i++){
+			if(produkte[i] == null){
+				System.out.println("Lagerplatz leer");
+				produkte[i] = produkt;
+				System.out.println("Neues Produkt hinzugefuegt.");
+			}
+		}
+		
+	}
 	
 	
 	public Produkt[] getProdukte(){

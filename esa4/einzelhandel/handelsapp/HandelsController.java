@@ -34,7 +34,10 @@ public class HandelsController{
 		Angestellter angestellter = new Angestellter();
 		System.out.println("\n>> Neuer Angestellter wurde erzeugt");
 		angestellter.sortimentFuellen();
-		System.out.println("\n>> Sortiment wurde erzeugt");
+		System.out.println("\n>> Sortiment wurde erzeugt und Produkte eingelagert");
+		//printLager(angestellter.getLager().getProdukte());
+		
+		
 		ProbeKunde probeKunde = new ProbeKunde(angestellter.getSortiment());
 		System.out.println(">> Neuer Probekunde wurde erzeugt");
 		probeKunde.einkaufen();
@@ -74,6 +77,27 @@ public class HandelsController{
 		}
 		System.out.println("-------------------");
 	}
+	
+	/*
+	public void printLager(Produkt[] produkte){
+		System.out.println("-------------------");
+		System.out.println("Lager:");
+		System.out.println("-------------------");
+		for (int i = 0; i < 4; i++){
+			System.out.println("Produktname: " + produkte.getProduktName() + " Markenname: " + produkte.getMarkenName() + " Bestand: " + produkte.getMarkenName());
+		}
+		if(produkte[0] != null){
+			System.out.println("Produktname: "+produkte[0].getProduktName()+ " Markenname: "+ produkte[0].getMarkenName());
+		}
+		if(produkte[1] != null){
+			System.out.println("Produktname: "+produkte[1].getProduktName()+ " Markenname: "+ produkte[1].getMarkenName());
+		}
+		if(produkte[2] != null){
+			System.out.println("Produktname: "+produkte[2].getProduktName()+ " Markenname: "+ produkte[2].getMarkenName());
+		}
+		System.out.println("-------------------");
+	}
+	*/
 
 	public void printWarenkorb(Produkt[] produkte){
 		System.out.println("-------------------");

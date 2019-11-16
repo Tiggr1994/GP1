@@ -13,6 +13,7 @@ import einzelhandel.waren.*;
 public class Angestellter{
 
 	Sortiment sortiment = new Sortiment();
+	Produkt[] lager = new Produkt[4];
 
 	public void sortimentFuellen(){
 		Produkt[] sortiment = new Produkt[4];
@@ -27,11 +28,29 @@ public class Angestellter{
 		sortiment[1] = preiseSetzen(sortiment[1]);
 		sortiment[2] = preiseSetzen(sortiment[2]);
 		sortiment[3] = preiseSetzen(sortiment[3]);
+		
+		//Produkte dem Sortiment hinzufügen und einlagern
 		this.sortiment.add(sortiment);
+		
+		for (int i = 0; i < 4; i++){
+			lager[i] = sortiment[i];
+			lager[i].setBestand(1);
+			//System.out.println("Neues Produkt dem Lager hinzugefuegt");
+		}
+
+		System.out.println("\nMomentan vorhandene Produkte im Lager:");
+		for (int i = 0; i < 4; i++){
+			System.out.println("Markenname: " + lager[i].getMarkenName() + "\t\tProduktname: " + lager[i].getProduktName() + "\t\tBestand: " + lager[i].getBestand());
+		}
+		
 	}	
 
 	public Sortiment getSortiment(){
 		return this.sortiment;
+	}
+	
+	public Produkt[] getLager(){
+		return this.lager;
 	}
 
 	public void sortimentLeeren(){

@@ -11,14 +11,14 @@ package einzelhandel.waren;
 
 public class Sortiment{
 
-	private Produkt[] produkte = new Produkt[3];
+	private Produkt[] produkte = new Produkt[4];
 	
 	public void add(Produkt[] produkte){
 		this.produkte = produkte;
 	}	
 	
 	public void removeAll(){
-		this.produkte = new Produkt[3];
+		this.produkte = new Produkt[4];
 	}
 
 	public Produkt[] getProdukte(){
