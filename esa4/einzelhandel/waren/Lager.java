@@ -11,9 +11,12 @@ package einzelhandel.waren;
 
 public class Lager{
 
-	private Produkt[] produkte = new Produkt[4];
+	private LagerPosten[] lagerPosten = new LagerPosten[4];
 	
-	public void add(Produkt produkt){
+	public void add(Produkt produkt, int anzahl){
+		for(int i = 0; i < lagerPosten.length; i++){
+			//prüfen ob produkt bereits vorhanden (equals des produktes überschreiben)
+		}
 		
 		for (int i = 0; i < 4; i++){
 			if(produkte[i] == null){
@@ -22,10 +25,10 @@ public class Lager{
 				System.out.println("Neues Produkt hinzugefuegt.");
 			}
 		}
-		
 	}
-	
-	
+
+
+
 	public Produkt[] getProdukte(){
 		return this.produkte;
 	}
