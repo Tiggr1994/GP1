@@ -15,7 +15,6 @@ public class Produkt{
 	private double preisNetto;
 	private String markenName;
 	private String produktName;
-	private int bestand;
 	
 	public Produkt(String markenName, String produktName){
 		this.markenName = markenName;
@@ -45,16 +44,25 @@ public class Produkt{
 	public void setPreisNetto(double preis, double steuersatz){
 		this.preisNetto = preis * steuersatz;
 	}
-	
-	public int getBestand(){
-		return bestand;
-	}
-	
-	public void setBestand(int bestand){
-		this.bestand = bestand;
-	}
-	
+
 	public String toString(String marke, String produkt, double brutto, double steuersatz){
 		return "Markenname: " + marke + " Produktname: " + produkt + " Bruttopreis: " + brutto + " Umsatzsteuersatz: " + steuersatz;
+	}
+
+	@Override
+	public boolean equals(Object o){
+		if(o == this){
+			return true;
+		}
+		
+		if (!(o instanceof Produkt)) { 
+            return false; 
+		} 
+
+		Produkt produkt = (Produkt) o;
+		return preisBrutto == produkt.getPreisBrutto()
+			&& preisNetto == produkt.getPreisNetto()
+			&& markenName == produkt.getMarkenName()
+			&& produktName == produkt.getProduktName();
 	}
 }

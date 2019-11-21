@@ -18,9 +18,18 @@ public class LagerPosten{
 		this.anzahl = anzahl;
 	}
 
+	public Produkt getProdukt(){
+		return this.produkt;
+	}
+
+	public int getAnzahl(){
+		return this.anzahl;
+	}
+
 	public void addProdukte(int anzahl){
 		this.anzahl += anzahl;
 	}
+	
 
 	public void takeProdukte(int anzahl){
 		this.anzahl -= anzahl;

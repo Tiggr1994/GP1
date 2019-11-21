@@ -33,32 +33,32 @@ public class HandelsController{
 	public void run(){
 		Angestellter angestellter = new Angestellter();
 		System.out.println("\n>> Neuer Angestellter wurde erzeugt");
-		angestellter.sortimentFuellen();
+		angestellter.produkteErstellen(2);
 		System.out.println("\n>> Sortiment wurde erzeugt und Produkte eingelagert");
 		//printLager(angestellter.getLager().getProdukte());
 		
 		
-		ProbeKunde probeKunde = new ProbeKunde(angestellter.getSortiment());
-		System.out.println(">> Neuer Probekunde wurde erzeugt");
-		probeKunde.einkaufen();
-		System.out.println(">> Probekunde hat eingekauft");
+		//ProbeKunde probeKunde = new ProbeKunde(angestellter.getSortiment());
+		//System.out.println(">> Neuer Probekunde wurde erzeugt");
+		//probeKunde.einkaufen();
+		//System.out.println(">> Probekunde hat eingekauft");
 
-		printSortiment(angestellter.getSortiment().getProdukte());
-		printWarenkorb(probeKunde.getGewaehlteProdukte());
+		//printSortiment(angestellter.getSortiment().getProdukte());
+		//printWarenkorb(probeKunde.getGewaehlteProdukte());
 
-		System.out.println(">> Probekunde geht an die Kasse");
-		Produkt[] produkte = probeKunde.getGewaehlteProdukte();
-		kassenDruck(produkte);
-		if(produkte[0] != null){
-			rechnungDruckenNeu(produkte[0], "", 0, 0, 0, 0);
-		}
-		if(produkte[1] != null){
-			rechnungDruckenNeu(produkte[1], "", 0, 0, 0, 0);
-		}
-		if(produkte[2] != null){
-			rechnungDruckenNeu(produkte[2], "", 0, 0, 0, 0);
-		}
-		rechnungDruckenNeu(null,"Summe", getSumme(produkte), getHighestPrice(produkte), getLowestPrice(produkte), getAveragePrice(produkte));
+		//System.out.println(">> Probekunde geht an die Kasse");
+		//Produkt[] produkte = probeKunde.getGewaehlteProdukte();
+		//kassenDruck(produkte);
+		//if(produkte[0] != null){
+		//	rechnungDruckenNeu(produkte[0], "", 0, 0, 0, 0);
+		//}
+		//if(produkte[1] != null){
+		//	rechnungDruckenNeu(produkte[1], "", 0, 0, 0, 0);
+		//}
+		//if(produkte[2] != null){
+		//	rechnungDruckenNeu(produkte[2], "", 0, 0, 0, 0);
+		//}
+		//rechnungDruckenNeu(null,"Summe", getSumme(produkte), getHighestPrice(produkte), getLowestPrice(produkte), getAveragePrice(produkte));
 		//rechnungDrucken(probeKunde.getGewaehlteProdukte());
 	}
 

@@ -13,44 +13,18 @@ import einzelhandel.waren.*;
 public class Angestellter{
 
 	Sortiment sortiment = new Sortiment();
-	Produkt[] lager = new Produkt[4];
+	Lager lager = new Lager();
 
-	public void sortimentFuellen(){
-		Produkt[] sortiment = new Produkt[4];
-		//Produkte konfigurieren
-		sortiment[0] = produktErzeugen(1);
-		sortiment[1] = produktErzeugen(2);
-		sortiment[2] = produktErzeugen(3);
-		sortiment[3] = produktErzeugen(4);
-
-		//Preise setzen
-		sortiment[0] = preiseSetzen(sortiment[0]);
-		sortiment[1] = preiseSetzen(sortiment[1]);
-		sortiment[2] = preiseSetzen(sortiment[2]);
-		sortiment[3] = preiseSetzen(sortiment[3]);
-		
-		//Produkte dem Sortiment hinzufügen und einlagern
-		this.sortiment.add(sortiment);
-		
-		for (int i = 0; i < 4; i++){
-			lager[i] = sortiment[i];
-			lager[i].setBestand(1);
-			//System.out.println("Neues Produkt dem Lager hinzugefuegt");
+	public void produkteErstellen(int anzahl){
+		for (int i = 0; i < anzahl; i++){
+			var produkt = produktErzeugen(i+1);
+			lager.addProdukt(produkt,1);
 		}
-
-		System.out.println("\nMomentan vorhandene Produkte im Lager:");
-		for (int i = 0; i < 4; i++){
-			System.out.println("Markenname: " + lager[i].getMarkenName() + "\t\tProduktname: " + lager[i].getProduktName() + "\t\tBestand: " + lager[i].getBestand());
-		}
-		
-	}	
+		printLager();
+	}
 
 	public Sortiment getSortiment(){
 		return this.sortiment;
-	}
-	
-	public Produkt[] getLager(){
-		return this.lager;
 	}
 
 	public void sortimentLeeren(){
@@ -58,40 +32,50 @@ public class Angestellter{
 		System.out.println(">> Sortiment wurde geleert");
 	}	
 
-	private Produkt produktErzeugen(int produktNummer){
-		System.out.println("Produktname von Produkt Nr."+produktNummer);
-		String produktName = System.console().readLine();
-		System.out.println("Markenname von Produkt Nr."+produktNummer );
-		String produktMarke = System.console().readLine();
-		return new Produkt(produktMarke,produktName);
+	private void printLager(){
+		System.out.println("---------------------------");
+		System.out.println("Lager:");
+		System.out.println("---------------------------");
+		LagerPosten[] lagerPosten = lager.getLagerPosten();
+		for (int i = 0; i < lagerPosten.length; i++){
+			if(lagerPosten[i] != null){
+				System.out.println("Markenname:" + lagerPosten[i].getProdukt().getMarkenName() 
+								+  " ProduktName:" + lagerPosten[i].getProdukt().getProduktName() 
+								+ " NettoPreis:" + lagerPosten[i].getProdukt().getPreisNetto());
+			}
+		}
+		System.out.println("---------------------------");
 	}
 
-	private Produkt preiseSetzen(Produkt produkt){
-		Character firstLetter = produkt.getMarkenName().toLowerCase().charAt(0);
-		if(firstLetter >='a' && firstLetter <= 'k'){
-			System.out.println("Bitte geben Sie den Nettopreis des Produktes: \"" +produkt.getProduktName() +"\" ein.");
+	private Produkt produktErzeugen(int produktNummer){
+		System.out.println("Produktname von Produkt Nr."+produktNummer+"eingeben");
+		String produktName = System.console().readLine();
+		System.out.println("Markenname von Produkt Nr."+produktNummer+"eingeben.");
+		String produktMarke = System.console().readLine();
+		boolean isNumber = true;
+		Double nettoPrice = 0.0;
+		do{
+			System.out.println("Nettopreis von Produkt Nr."+produktNummer+"eingeben.");
 			String netto = System.console().readLine();
-			try{
-				Double preis = Double.parseDouble(netto);
-				produkt.setPreisNetto(preis, 1);
-				produkt.setPreisBrutto(preis/2,1);
-			}catch(NumberFormatException ex){
-				System.out.println("Der Preis darf nur Zahlen enthalten. Der Vorgang muss wiederholt werden");
-				preiseSetzen(produkt);
+			if(checkIfIsNumber(netto)){
+				isNumber = false;
+				nettoPrice = Double.parseDouble(netto);
+			}else{
+				System.out.println("Bitte geben sie eine Zahl an, ihre eingabe war nicht korrekt. Der Vorgang wird wiederholt");
 			}
-		}
-		else{
-			System.out.println("Bitte geben Sie den Bruttopreis des Produktes:'"+produkt.getProduktName() + "' ein.");
-			String brutto = System.console().readLine();
-			try{
-				Double preis = Double.parseDouble(brutto);
-				produkt.setPreisNetto(preis, 2);
-				produkt.setPreisBrutto(preis,1);
-			}catch(NumberFormatException ex){
-				System.out.println("Der Preis darf nur Zahlen enthalten. Der Vorgang muss wiederholt werden");
-				preiseSetzen(produkt);
-			}
-		}
+		}while(isNumber);
+		Produkt produkt = new Produkt(produktMarke,produktName);
+		produkt.setPreisNetto(nettoPrice, 1);
+		produkt.setPreisBrutto(nettoPrice, 19);
 		return produkt;
+	}
+
+	private boolean checkIfIsNumber(String string){
+		try{
+			Double.parseDouble(string);
+			return true;
+		}catch(Exception ex){
+			return false;
+		}
 	}
 }

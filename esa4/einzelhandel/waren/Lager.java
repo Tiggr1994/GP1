@@ -12,24 +12,56 @@ package einzelhandel.waren;
 public class Lager{
 
 	private LagerPosten[] lagerPosten = new LagerPosten[4];
-	
-	public void add(Produkt produkt, int anzahl){
+
+	public LagerPosten[] getLagerPosten(){
+		return this.lagerPosten;
+	}
+
+	public void addProdukt(Produkt produkt, int anzahl){
+		boolean produktPlaced = false;
+		//prüfen ob produkt bereits vorhanden ist => wenn ja dann nur anzahl addieren 
 		for(int i = 0; i < lagerPosten.length; i++){
-			//prüfen ob produkt bereits vorhanden (equals des produktes überschreiben)
-		}
-		
-		for (int i = 0; i < 4; i++){
-			if(produkte[i] == null){
-				System.out.println("Lagerplatz leer");
-				produkte[i] = produkt;
-				System.out.println("Neues Produkt hinzugefuegt.");
+			if(lagerPosten[i] != null && lagerPosten[i].getProdukt().equals(produkt)){
+				lagerPosten[i].addProdukte(anzahl);
+				produktPlaced = true;
+				break;
 			}
+		}
+		//Produkt zum Lager hinzufügen
+		if(produktPlaced == false){
+			for(int i = 0; i < lagerPosten.length; i++){
+				if(lagerPosten[i] == null){
+					LagerPosten posten = new LagerPosten(produkt,anzahl);
+					lagerPosten[i] = posten;
+					produktPlaced = true;
+					break;
+				}
+			}
+		}
+		if(produktPlaced == false){
+			throw new IllegalArgumentException("Kein Lagerplatz Frei");
 		}
 	}
 
-
-
-	public Produkt[] getProdukte(){
-		return this.produkte;
+	public void takeProdukt(Produkt produkt, int anzahl){
+		for(int i = 0; i < lagerPosten.length; i++){
+			if(lagerPosten[i] != null && lagerPosten[i].getProdukt().equals(produkt)){
+				if(lagerPosten[i].getAnzahl() >= anzahl){
+					lagerPosten[i].takeProdukte(anzahl);
+				}
+				else{
+					throw new Exception("Nicht genug Produkte vorhanden");
+				}
+			}
+		}
+		cleanLager();
+	}
+	
+	private void cleanLager(){
+		for(int i = 0; i < lagerPosten.length; i++){
+			if(lagerPosten[i] != null && lagerPosten[i].getAnzahl() == 0){
+				lagerPosten[i] = null;
+			}
+		}
 	}
 }
