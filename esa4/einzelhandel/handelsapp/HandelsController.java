@@ -5,6 +5,7 @@ import java.util.Date;
 
 import einzelhandel.akteure.*;
 import einzelhandel.waren.*;
+import java.util.Random;
 
 /**
 * <p>Die Klasse HandelsController steuert die Aktionen 
@@ -35,6 +36,15 @@ public class HandelsController{
 		System.out.println("\n>> Neuer Angestellter wurde erzeugt");
 		angestellter.produkteErstellen(2);
 		System.out.println("\n>> Sortiment wurde erzeugt und Produkte eingelagert");
+		System.out.println(">> Münze wird geworfen");
+		int rng = 1 + (int)(Math.random() * ((2 - 1) + 1));
+		if(rng == 1){
+			angestellter.getSortiment().deleteSortimentEintragRandom();
+			System.out.println(">> Es wurde ein Sortimenteintrag gelöscht");
+		}else{
+			System.out.println(">> Es wurde kein Sortimenteintrag gelöscht");
+		}
+		angestellter.getSortiment().printSortiment();
 		//printLager(angestellter.getLager().getProdukte());
 		
 		

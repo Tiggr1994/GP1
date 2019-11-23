@@ -30,11 +30,9 @@ public class Angestellter{
 		return this.sortiment;
 	}
 
-	public void sortimentLeeren(){
-		sortiment.removeAll();
-		System.out.println(">> Sortiment wurde geleert");
-	}	
-
+	public Lager getLager(){
+		return this.lager;
+	}
 	private Produkt produktErzeugen(int produktNummer){
 		System.out.println("Produktname von Produkt Nr."+produktNummer+"eingeben");
 		String produktName = System.console().readLine();
