@@ -12,6 +12,14 @@ package einzelhandel.waren;
 public class Lager{
 
 	private LagerPosten[] lagerPosten = new LagerPosten[4];
+	private static Lager instance;
+	private Lager(){}
+	public static Lager getInstance(){
+		if(Lager.instance == null){
+			Lager.instance = new Lager();
+		}
+		return Lager.instance;
+	}
 
 	public LagerPosten[] getLagerPosten(){
 		return this.lagerPosten;
@@ -50,7 +58,7 @@ public class Lager{
 					lagerPosten[i].takeProdukte(anzahl);
 				}
 				else{
-					throw new Exception("Nicht genug Produkte vorhanden");
+					throw new IllegalArgumentException("Nicht genug Produkte vorhanden");
 				}
 			}
 		}

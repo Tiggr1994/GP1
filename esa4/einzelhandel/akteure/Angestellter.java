@@ -12,27 +12,17 @@ import einzelhandel.waren.*;
 
 public class Angestellter{
 
-	Sortiment sortiment = new Sortiment();
-	Lager lager = new Lager();
-
 	public void produkteErstellen(int anzahl){
 		for (int i = 0; i < anzahl; i++){
 			Produkt produkt = produktErzeugen(i+1);
 			SortimentEintrag sortimentEintrag = new SortimentEintrag(produkt.getMarkenName(),produkt.getProduktName(),"Kaufhaus" ,produkt.getPreisNetto());
-			lager.addProdukt(produkt,1);
-			sortiment.addSortimentEintrag(sortimentEintrag);
+			Lager.getInstance().addProdukt(produkt,1);
+			Sortiment.getInstance().addSortimentEintrag(sortimentEintrag);
 		}
-		lager.printLager();
-		sortiment.printSortiment();
+		Lager.getInstance().printLager();
+		Sortiment.getInstance().printSortiment();
 	}
-
-	public Sortiment getSortiment(){
-		return this.sortiment;
-	}
-
-	public Lager getLager(){
-		return this.lager;
-	}
+	
 	private Produkt produktErzeugen(int produktNummer){
 		System.out.println("Produktname von Produkt Nr."+produktNummer+"eingeben");
 		String produktName = System.console().readLine();

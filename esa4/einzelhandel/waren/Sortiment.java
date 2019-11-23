@@ -11,6 +11,15 @@ package einzelhandel.waren;
 
 public class Sortiment{
 
+	private static Sortiment instance;
+	private Lager(){}
+	public static Sortiment getInstance(){
+		if(Sortiment.instance == null){
+			Sortiment.instance = new Sortiment();
+		}
+		return Sortiment.instance;
+	}
+
 	private SortimentEintrag[] sortimentEintraege = new SortimentEintrag[4];
 
 	public void addSortimentEintrag(SortimentEintrag sortimentEintrag){

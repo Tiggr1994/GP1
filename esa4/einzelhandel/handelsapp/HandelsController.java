@@ -33,81 +33,23 @@ public class HandelsController{
 
 	public void run(){
 		Angestellter angestellter = new Angestellter();
+		ProbeKunde kunde = new ProbeKunde();
 		System.out.println("\n>> Neuer Angestellter wurde erzeugt");
 		angestellter.produkteErstellen(2);
 		System.out.println("\n>> Sortiment wurde erzeugt und Produkte eingelagert");
 		System.out.println(">> Münze wird geworfen");
 		int rng = 1 + (int)(Math.random() * ((2 - 1) + 1));
 		if(rng == 1){
-			angestellter.getSortiment().deleteSortimentEintragRandom();
+			Sortiment.getInstance().deleteSortimentEintragRandom();
 			System.out.println(">> Es wurde ein Sortimenteintrag gelöscht");
 		}else{
 			System.out.println(">> Es wurde kein Sortimenteintrag gelöscht");
 		}
-		angestellter.getSortiment().printSortiment();
-		//printLager(angestellter.getLager().getProdukte());
-		
-		
-		//ProbeKunde probeKunde = new ProbeKunde(angestellter.getSortiment());
-		//System.out.println(">> Neuer Probekunde wurde erzeugt");
-		//probeKunde.einkaufen();
-		//System.out.println(">> Probekunde hat eingekauft");
+		Sortiment.getInstance().printSortiment();
+		kunde.einkaufRandom();
+		Lager.getInstance().printLager();
 
-		//printSortiment(angestellter.getSortiment().getProdukte());
-		//printWarenkorb(probeKunde.getGewaehlteProdukte());
-
-		//System.out.println(">> Probekunde geht an die Kasse");
-		//Produkt[] produkte = probeKunde.getGewaehlteProdukte();
-		//kassenDruck(produkte);
-		//if(produkte[0] != null){
-		//	rechnungDruckenNeu(produkte[0], "", 0, 0, 0, 0);
-		//}
-		//if(produkte[1] != null){
-		//	rechnungDruckenNeu(produkte[1], "", 0, 0, 0, 0);
-		//}
-		//if(produkte[2] != null){
-		//	rechnungDruckenNeu(produkte[2], "", 0, 0, 0, 0);
-		//}
-		//rechnungDruckenNeu(null,"Summe", getSumme(produkte), getHighestPrice(produkte), getLowestPrice(produkte), getAveragePrice(produkte));
-		//rechnungDrucken(probeKunde.getGewaehlteProdukte());
 	}
-
-	public void printSortiment(Produkt[] produkte){
-		System.out.println("-------------------");
-		System.out.println("Sortiment:");
-		System.out.println("-------------------");
-		if(produkte[0] != null){
-			System.out.println("Produktname: "+produkte[0].getProduktName()+ " Markenname: "+ produkte[0].getMarkenName());
-		}
-		if(produkte[1] != null){
-			System.out.println("Produktname: "+produkte[1].getProduktName()+ " Markenname: "+ produkte[1].getMarkenName());
-		}
-		if(produkte[2] != null){
-			System.out.println("Produktname: "+produkte[2].getProduktName()+ " Markenname: "+ produkte[2].getMarkenName());
-		}
-		System.out.println("-------------------");
-	}
-	
-	/*
-	public void printLager(Produkt[] produkte){
-		System.out.println("-------------------");
-		System.out.println("Lager:");
-		System.out.println("-------------------");
-		for (int i = 0; i < 4; i++){
-			System.out.println("Produktname: " + produkte.getProduktName() + " Markenname: " + produkte.getMarkenName() + " Bestand: " + produkte.getMarkenName());
-		}
-		if(produkte[0] != null){
-			System.out.println("Produktname: "+produkte[0].getProduktName()+ " Markenname: "+ produkte[0].getMarkenName());
-		}
-		if(produkte[1] != null){
-			System.out.println("Produktname: "+produkte[1].getProduktName()+ " Markenname: "+ produkte[1].getMarkenName());
-		}
-		if(produkte[2] != null){
-			System.out.println("Produktname: "+produkte[2].getProduktName()+ " Markenname: "+ produkte[2].getMarkenName());
-		}
-		System.out.println("-------------------");
-	}
-	*/
 
 	public void printWarenkorb(Produkt[] produkte){
 		System.out.println("-------------------");
