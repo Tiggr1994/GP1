@@ -11,17 +11,52 @@ package einzelhandel.waren;
 
 public class Sortiment{
 
-	private Produkt[] produkte = new Produkt[4];
-	
-	public void add(Produkt[] produkte){
-		this.produkte = produkte;
-	}	
-	
-	public void removeAll(){
-		this.produkte = new Produkt[4];
+	private SortimentEintrag[] sortimentEintraege = new SortimentEintrag[4];
+
+	public void addSortimentEintrag(SortimentEintrag sortimentEintrag){
+		boolean sortimentPlaced = false;
+		//prüfen ob sortiment bereits vorhanden ist
+		for(int i = 0; i < sortimentEintraege.length; i++){
+			if(sortimentEintraege[i] != null && sortimentEintraege[i].equals(sortimentEintrag)){
+				sortimentPlaced = true;
+				break;
+			}
+		}
+		//SortimentEintrag zum Sortiment hinzufügen
+		if(sortimentPlaced == false){
+			for(int i = 0; i < sortimentEintraege.length; i++){
+				if(sortimentEintraege[i] == null){
+					sortimentEintraege[i] = sortimentEintrag;
+					sortimentPlaced = true;
+					break;
+				}
+			}
+		}
+		if(sortimentPlaced == false){
+			throw new IllegalArgumentException("Kein Sortimentplatz Frei");
+		}
 	}
 
-	public Produkt[] getProdukte(){
-		return this.produkte;
+	public void deleteSortimentEintragRandom(){
+		for(int i = 0; i < sortimentEintraege.length; i++){
+			if(sortimentEintraege[i] != null){
+				sortimentEintraege[i] = null;
+				break;
+			}
+		}
+	}
+	public void printSortiment(){
+		System.out.println("---------------------------");
+		System.out.println("Sortiment:");
+		System.out.println("---------------------------");
+		for (int i = 0; i < sortimentEintraege.length; i++){
+			if(sortimentEintraege[i] != null){
+				System.out.println("Markenname: " + sortimentEintraege[i].getMarkenName() 
+								+  " ProduktName: " + sortimentEintraege[i].getProduktName() 
+								+ " NettoPreis: " + sortimentEintraege[i].getPreisNetto()
+								+ " Bezugsquelle: " + sortimentEintraege[i].getBezugsQuelle());
+			}
+		}
+		System.out.println("---------------------------");
 	}
 }

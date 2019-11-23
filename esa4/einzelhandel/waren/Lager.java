@@ -56,6 +56,21 @@ public class Lager{
 		}
 		cleanLager();
 	}
+
+	public void printLager(){
+		System.out.println("---------------------------");
+		System.out.println("Lager:");
+		System.out.println("---------------------------");
+		for (int i = 0; i < lagerPosten.length; i++){
+			if(lagerPosten[i] != null){
+				System.out.println("Markenname: " + lagerPosten[i].getProdukt().getMarkenName() 
+								+  " ProduktName: " + lagerPosten[i].getProdukt().getProduktName() 
+								+ " NettoPreis: " + lagerPosten[i].getProdukt().getPreisNetto()
+								+ " Anzahl: " +lagerPosten[i].getAnzahl());
+			}
+		}
+		System.out.println("---------------------------");
+	}
 	
 	private void cleanLager(){
 		for(int i = 0; i < lagerPosten.length; i++){

@@ -62,7 +62,7 @@ public class Produkt{
 		Produkt produkt = (Produkt) o;
 		return preisBrutto == produkt.getPreisBrutto()
 			&& preisNetto == produkt.getPreisNetto()
-			&& markenName == produkt.getMarkenName()
-			&& produktName == produkt.getProduktName();
+			&& markenName.equals(produkt.getMarkenName())
+			&& produktName.equals(produkt.getProduktName());
 	}
 }

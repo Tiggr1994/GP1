@@ -17,10 +17,13 @@ public class Angestellter{
 
 	public void produkteErstellen(int anzahl){
 		for (int i = 0; i < anzahl; i++){
-			var produkt = produktErzeugen(i+1);
+			Produkt produkt = produktErzeugen(i+1);
+			SortimentEintrag sortimentEintrag = new SortimentEintrag(produkt.getMarkenName(),produkt.getProduktName(),"Kaufhaus" ,produkt.getPreisNetto());
 			lager.addProdukt(produkt,1);
+			sortiment.addSortimentEintrag(sortimentEintrag);
 		}
-		printLager();
+		lager.printLager();
+		sortiment.printSortiment();
 	}
 
 	public Sortiment getSortiment(){
@@ -31,21 +34,6 @@ public class Angestellter{
 		sortiment.removeAll();
 		System.out.println(">> Sortiment wurde geleert");
 	}	
-
-	private void printLager(){
-		System.out.println("---------------------------");
-		System.out.println("Lager:");
-		System.out.println("---------------------------");
-		LagerPosten[] lagerPosten = lager.getLagerPosten();
-		for (int i = 0; i < lagerPosten.length; i++){
-			if(lagerPosten[i] != null){
-				System.out.println("Markenname:" + lagerPosten[i].getProdukt().getMarkenName() 
-								+  " ProduktName:" + lagerPosten[i].getProdukt().getProduktName() 
-								+ " NettoPreis:" + lagerPosten[i].getProdukt().getPreisNetto());
-			}
-		}
-		System.out.println("---------------------------");
-	}
 
 	private Produkt produktErzeugen(int produktNummer){
 		System.out.println("Produktname von Produkt Nr."+produktNummer+"eingeben");
