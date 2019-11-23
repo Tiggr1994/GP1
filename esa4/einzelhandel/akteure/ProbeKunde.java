@@ -45,10 +45,18 @@ public class ProbeKunde{
 			if(posten[i] != null){
 				int anzahl = zahlEinlesen(posten[i].getProdukt(), posten[i].getAnzahl());
 				if(anzahl != 0){
-					kasse.registriereWare(posten[i].getProdukt(),anzahl);
+					kasse.registriereWare(posten[i].getProdukt(),anzahl,"");
 				}
 			}
 		}
+	}
+	public void einkaufenAbschließen()
+	{
+		kasse.registriereWare(new Produkt("test","test"),2,"Summe");
+	}
+
+	public void rechnungVerlangen(){
+		kasse.druckeKassenzettel();
 	}
 	private int zahlEinlesen(Produkt produkt, int vorrat){
 		boolean isNumber = false;

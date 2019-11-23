@@ -1,13 +1,41 @@
 package einzelhandel.handelsapp;
 import einzelhandel.akteure.*;
 import einzelhandel.waren.*;
+import java.util.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Kasse{
 
 	PriceDisplay priceDisplayMonitor = new PriceDisplayMonitor();
+	Map<Produkt,Double> registrierteProdukte = new HashMap<Produkt,Double>();
 	
-	public void registriereWare(Produkt produkt,int anzahl){
-		this.priceDisplayMonitor.writeln(produkt.getProduktName(), calculatePrice(produkt, anzahl));
+	public void registriereWare(Produkt produkt,int anzahl, String summe){
+		if(summe == "Summe"){
+			System.out.println("Summe: "+ calculateSumme());
+		}else{
+			double price = calculatePrice(produkt, anzahl);
+			registrierteProdukte.put(produkt, price);
+			this.priceDisplayMonitor.writeln(produkt.getProduktName(), price);
+		}
+	}
+
+	public void druckeKassenzettel(){
+		System.out.println("-------------------");
+		System.out.println("Vielen Dank fuer Ihren Einkauf");
+		System.out.println("Datum des Einkaufs: " + SimpleDateFormat.getDateInstance().format(new Date()));
+		System.out.println("-------------------");
+		for(Map.Entry<Produkt,Double> entry : registrierteProdukte.entrySet()){
+			String markenName = entry.getKey().getMarkenName();
+			if(!isListedSortiment(entry.getKey())){ markenName = "Ausverkauf";}
+			System.out.println("Markenname: "+markenName 
+							+ " Produktname: "+ entry.getKey().getProduktName()
+							+ " Preis " + entry.getValue());
+		}
+		System.out.println("Summe: "+ calculateSumme()+" Durchschnittspreis: "+ calculateAvgPrice());
+		System.out.println("-------------------");
+		System.out.println("Beehren sie uns bald wieder");
+		System.out.println("-------------------");
 	}
 
 	private boolean isListedSortiment(Produkt produkt){
@@ -32,5 +60,23 @@ public class Kasse{
 	private double round(double value, int places){
 		double scale = Math.pow(10, places);
 		return Math.round(value * scale) / scale;
+	}
+
+	private double calculateSumme(){
+		double summe = 0.0;
+		for(Map.Entry<Produkt,Double> entry : registrierteProdukte.entrySet()){
+			summe += entry.getValue();
+		}
+		return summe;
+	}
+
+	private double calculateAvgPrice(){
+		int count = 0;
+		double summe = 0.0;
+		for(Map.Entry<Produkt,Double> entry : registrierteProdukte.entrySet()){
+			summe += entry.getValue();
+			count += 1;
+		}
+		return summe / count;
 	}
 }
