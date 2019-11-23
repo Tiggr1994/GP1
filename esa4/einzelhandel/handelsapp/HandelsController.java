@@ -35,15 +35,15 @@ public class HandelsController{
 		Angestellter angestellter = new Angestellter();
 		ProbeKunde kunde = new ProbeKunde();
 		System.out.println("\n>> Neuer Angestellter wurde erzeugt");
-		angestellter.produkteErstellen(2);
+		angestellter.produkteErstellen(4);
 		System.out.println("\n>> Sortiment wurde erzeugt und Produkte eingelagert");
-		System.out.println(">> Münze wird geworfen");
+		System.out.println(">> Muenze wird geworfen");
 		int rng = 1 + (int)(Math.random() * ((2 - 1) + 1));
 		if(rng == 1){
 			Sortiment.getInstance().deleteSortimentEintragRandom();
-			System.out.println(">> Es wurde ein Sortimenteintrag gelöscht");
+			System.out.println(">> Es wurde ein Sortimenteintrag geloescht");
 		}else{
-			System.out.println(">> Es wurde kein Sortimenteintrag gelöscht");
+			System.out.println(">> Es wurde kein Sortimenteintrag geloescht");
 		}
 		Sortiment.getInstance().printSortiment();
 		System.out.println(">> Kunde kauft ein");
@@ -78,7 +78,7 @@ public class HandelsController{
 
 	public void rechnungDrucken(Produkt[] produkt){
 		System.out.println("-------------------");
-		System.out.println("Vielen Dank fuer ihren Einkauf");
+		System.out.println("Vielen Dank fuer Ihren Einkauf");
 		System.out.println("Datum des Einkaufs: " + SimpleDateFormat.getDateInstance().format(new Date()));
 		System.out.println("-------------------");
 		if(produkt[0] != null){

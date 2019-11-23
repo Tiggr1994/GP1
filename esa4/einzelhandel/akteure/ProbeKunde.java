@@ -31,9 +31,9 @@ public class ProbeKunde{
 					LagerPosten boughtProdukt = Lager.getInstance().getLagerPosten()[i];
 					Lager.getInstance().takeProdukt(boughtProdukt.getProdukt(), rng);
 					warenKorb[i] = boughtProdukt;
-					System.out.println(">> Produkt:"+ boughtProdukt.getProdukt().getProduktName() + " wurde " +rng+"x gekauft.");
+					System.out.println(">> Produkt: "+ boughtProdukt.getProdukt().getProduktName() + " wurde " +rng+"x gekauft.");
 				}catch(IllegalArgumentException ex){
-					System.out.println(">> Im Lager ist die Anzahl:"+rng+" von Produkt:"+ Lager.getInstance().getLagerPosten()[i].getProdukt().getProduktName() +" nicht mehr vorhanden.");
+					System.out.println(">> Im Lager ist die Anzahl:"+rng+" von Produkt: "+ Lager.getInstance().getLagerPosten()[i].getProdukt().getProduktName() +" nicht mehr vorhanden.");
 				}
 			}
 		}
@@ -54,12 +54,12 @@ public class ProbeKunde{
 		boolean isNumber = false;
 		int anzahl = 0;
 		do{
-			System.out.println("Geben sie an wie viel sie von Produkt: "+ produkt.getProduktName()+" kaufen möchten. Die anzahl muss zwischen 0 und "+vorrat+" liegen.");
+			System.out.println("Geben Sie an wie viel sie von Produkt: "+ produkt.getProduktName()+" kaufen moechten. Die Anzahl muss zwischen 0 und "+vorrat+" liegen.");
 			String anzahlString = System.console().readLine();
 			if(checkIfIsNumber(anzahlString)){
 				anzahl = Integer.parseInt(anzahlString);
 				if(anzahl < 0 || anzahl > vorrat){
-					System.out.println("Die Eingabe war nicht korrekt wodurch der Vorgang widerholt werden muss. Die anzahl muss zwischen 0 und "+vorrat+" liegen.");
+					System.out.println("Die Eingabe war nicht korrekt wodurch der Vorgang widerholt werden muss. Die Anzahl muss zwischen 0 und "+vorrat+" liegen.");
 				}else{
 					isNumber = true;
 				}

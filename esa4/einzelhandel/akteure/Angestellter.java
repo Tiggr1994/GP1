@@ -16,7 +16,7 @@ public class Angestellter{
 		for (int i = 0; i < anzahl; i++){
 			Produkt produkt = produktErzeugen(i+1);
 			SortimentEintrag sortimentEintrag = new SortimentEintrag(produkt.getMarkenName(),produkt.getProduktName(),"Kaufhaus" ,produkt.getPreisNetto());
-			Lager.getInstance().addProdukt(produkt,1);
+			Lager.getInstance().addProdukt(produkt,3);
 			Sortiment.getInstance().addSortimentEintrag(sortimentEintrag);
 		}
 		Lager.getInstance().printLager();
@@ -24,14 +24,14 @@ public class Angestellter{
 	}
 	
 	private Produkt produktErzeugen(int produktNummer){
-		System.out.println("Produktname von Produkt Nr."+produktNummer+"eingeben");
+		System.out.println("Produktname von Produkt Nr. "+produktNummer+" eingeben:");
 		String produktName = System.console().readLine();
-		System.out.println("Markenname von Produkt Nr."+produktNummer+"eingeben.");
+		System.out.println("Markenname von Produkt Nr. "+produktNummer+" eingeben:");
 		String produktMarke = System.console().readLine();
 		boolean isNumber = true;
 		Double nettoPrice = 0.0;
 		do{
-			System.out.println("Nettopreis von Produkt Nr."+produktNummer+"eingeben.");
+			System.out.println("Nettopreis von Produkt Nr. "+produktNummer+" eingeben:");
 			String netto = System.console().readLine();
 			if(checkIfIsNumber(netto)){
 				isNumber = false;
