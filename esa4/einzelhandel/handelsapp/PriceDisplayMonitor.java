@@ -10,7 +10,7 @@ package einzelhandel.handelsapp;
 
 public class PriceDisplayMonitor extends PriceDisplay {
 
-  public void writeln(String text, long number){ 
-    System.out.println("> " + (number)+"   " + text +" <");
+  public void writeln(String text, double number){ 
+    System.out.println("<PriceMonitor> " + (text)+"   " + number +" <");
   };
 }

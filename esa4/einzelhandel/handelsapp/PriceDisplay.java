@@ -10,5 +10,5 @@ package einzelhandel.handelsapp;
 
 abstract public class PriceDisplay{
 
-  abstract public void writeln(String text, long price);
+  abstract public void writeln(String text, double price);
 }

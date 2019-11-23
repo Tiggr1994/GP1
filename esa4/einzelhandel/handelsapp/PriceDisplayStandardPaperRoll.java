@@ -20,9 +20,9 @@ public class PriceDisplayStandardPaperRoll extends PriceDisplay{
   }
 
   // price ist in cent gegeben
-  protected String formatNumberText(long price) {
-    long euro = price;
-    long cent = Math.abs(price) % 100;
+  protected String formatNumberText(double price) {
+    long euro = (long)price;
+    long cent = Math.abs((long)price) % 100;
 
     String eurotext = "" + euro;
     String centtext = "" + cent;
@@ -42,7 +42,7 @@ public class PriceDisplayStandardPaperRoll extends PriceDisplay{
   // Erst wird der Preis ausgegeben, dann nach ein paar
   // der erläuternde Text. Beide Argumente werden vorher
   // formatiert (siehe oben);
-  public void writeln(String text, long price){ 
+  public void writeln(String text, double price){ 
     System.out.println(formatNumberText(price) + clipText(text));
   };
 }

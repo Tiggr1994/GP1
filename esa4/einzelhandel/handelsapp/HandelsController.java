@@ -46,9 +46,10 @@ public class HandelsController{
 			System.out.println(">> Es wurde kein Sortimenteintrag gelöscht");
 		}
 		Sortiment.getInstance().printSortiment();
+		System.out.println(">> Kunde kauft ein");
 		kunde.einkaufRandom();
 		Lager.getInstance().printLager();
-
+		kunde.einkaufen();
 	}
 
 	public void printWarenkorb(Produkt[] produkte){

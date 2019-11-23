@@ -4,6 +4,7 @@ import einzelhandel.waren.Lager;
 import einzelhandel.waren.LagerPosten;
 import einzelhandel.waren.Produkt;
 import einzelhandel.waren.Sortiment;
+import einzelhandel.handelsapp.Kasse;
 
 /**
 * <p>Die Klasse ProbeKunde kauft Artikel aus dem Sortiment und lässt sich davon eine Rechnung geben.
@@ -16,7 +17,7 @@ Anschließend ist der Artikel ausverkauft und muss aus dem Sortiment entfernt we
 
 public class ProbeKunde{
 	private LagerPosten[] warenKorb = new LagerPosten[4];
-
+	private Kasse kasse = new Kasse();
 	public LagerPosten[] getWarenKorb(){
 		return this.warenKorb;
 	}
@@ -39,12 +40,42 @@ public class ProbeKunde{
 	}
 
 	public void einkaufen(){
+		LagerPosten[] posten = Lager.getInstance().getLagerPosten();
+		for(int i = 0; i < posten.length; i++){
+			if(posten[i] != null){
+				int anzahl = zahlEinlesen(posten[i].getProdukt(), posten[i].getAnzahl());
+				if(anzahl != 0){
+					kasse.registriereWare(posten[i].getProdukt(),anzahl);
+				}
+			}
+		}
+	}
+	private int zahlEinlesen(Produkt produkt, int vorrat){
+		boolean isNumber = false;
+		int anzahl = 0;
+		do{
+			System.out.println("Geben sie an wie viel sie von Produkt: "+ produkt.getProduktName()+" kaufen möchten. Die anzahl muss zwischen 0 und "+vorrat+" liegen.");
+			String anzahlString = System.console().readLine();
+			if(checkIfIsNumber(anzahlString)){
+				anzahl = Integer.parseInt(anzahlString);
+				if(anzahl < 0 || anzahl > vorrat){
+					System.out.println("Die Eingabe war nicht korrekt wodurch der Vorgang widerholt werden muss. Die anzahl muss zwischen 0 und "+vorrat+" liegen.");
+				}else{
+					isNumber = true;
+				}
+			}else{
+				System.out.println("Die Eingabe war nicht korrekt. Der Vorgang muss wiederholt werden");
+			}
+		}while(!isNumber);
+		return anzahl;
+	}
+
+	private boolean checkIfIsNumber(String string){
 		try{
-		int anzahl = produktKaufAnzahlWaehlen();
-		this.produkteWaehlen(anzahl);
-		}catch(IllegalArgumentException ex){
-			System.out.println("Sie haben eine ungueltige Eingabe gemacht. Der Vorgang muss wiederholt werden");
-			einkaufen();
+			Double.parseDouble(string);
+			return true;
+		}catch(Exception ex){
+			return false;
 		}
 	}
 }

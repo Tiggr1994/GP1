@@ -51,7 +51,6 @@ public class SortimentEintrag{
 		SortimentEintrag sortimentEintrag = (SortimentEintrag) o;
 		return preisNetto == sortimentEintrag.getPreisNetto()
 			&& markenName.equals(sortimentEintrag.getMarkenName())
-			&& produktName.equals(sortimentEintrag.getProduktName())
-			&& bezugsQuelle.equals(sortimentEintrag.getBezugsQuelle());
+			&& produktName.equals(sortimentEintrag.getProduktName());
 	}
 }
