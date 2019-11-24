@@ -80,7 +80,7 @@ druckeKassenzettel
   Druckt den Kassenbon mit allen Produkten und zusätzlichen Infos wie Datum und Grußwort.
 
 isListedSortiment
-  
+  Prüft, ob das Produkt im Sortiment vorhanden ist
 
 calculatePrice
   Berechnet den Gesamtpreis zu einem Produkt inkl. Anzahl mit 19% Umsatzsteuer
