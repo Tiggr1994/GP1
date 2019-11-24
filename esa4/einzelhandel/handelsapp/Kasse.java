@@ -81,5 +81,6 @@ public class Kasse{
 
 	private Map<Produkt,Double> sortProducts(Map<Produkt,Double> warenkorb){
 		Map<Produkt,Double> test = new HashMap<Produkt, Double>();
+		return test;
 	}
 }
