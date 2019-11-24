@@ -16,7 +16,7 @@ public class Angestellter{
 		for (int i = 0; i < anzahl; i++){
 			Produkt produkt = produktErzeugen(i+1);
 			SortimentEintrag sortimentEintrag = new SortimentEintrag(produkt.getMarkenName(),produkt.getProduktName(),"Kaufhaus" ,produkt.getPreisNetto());
-			Lager.getInstance().addProdukt(produkt,3);
+			Lager.getInstance().addProdukt(produkt,1);
 			Sortiment.getInstance().addSortimentEintrag(sortimentEintrag);
 		}
 		Lager.getInstance().printLager();
