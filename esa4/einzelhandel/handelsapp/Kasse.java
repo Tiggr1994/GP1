@@ -2,7 +2,6 @@ package einzelhandel.handelsapp;
 import einzelhandel.akteure.*;
 import einzelhandel.waren.*;
 import java.util.*;
-import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class Kasse{
@@ -77,6 +76,10 @@ public class Kasse{
 			summe += entry.getValue();
 			count += 1;
 		}
-		return summe / count;
+		return round((summe / count),2);
+	}
+
+	private Map<Produkt,Double> sortProducts(Map<Produkt,Double> warenkorb){
+		Map<Produkt,Double> test = new HashMap<Produkt, Double>();
 	}
 }
