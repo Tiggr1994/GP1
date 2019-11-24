@@ -7,7 +7,7 @@ Sortiment -> Paket: waren
 Kasse -> Paket: handelsapp
 
 
-Methoden nach Klassen geordnet:
+Methoden inkl. Beschreibung nach Klassen geordnet:
 
 
 LagerPosten:
