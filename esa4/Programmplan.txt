@@ -1,0 +1,7 @@
+Erzeugt Klassen:
+
+Lager
+SortimentEintrag
+LagerPosten
+
+Methoden:
