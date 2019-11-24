@@ -2,6 +2,8 @@ package einzelhandel.handelsapp;
 import einzelhandel.akteure.*;
 import einzelhandel.waren.*;
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.text.SimpleDateFormat;
 
 public class Kasse{
@@ -14,7 +16,13 @@ public class Kasse{
 			System.out.println("Summe: "+ calculateSumme());
 		}else{
 			double price = calculatePrice(produkt, anzahl);
-			registrierteProdukte.put(produkt, price);
+			if(!isListedSortiment(produkt)){
+				Produkt tempProdukt = new Produkt("Ausverkauf", produkt.getProduktName());
+				tempProdukt.setPreisNetto(produkt.getPreisNetto(), 1); 
+				registrierteProdukte.put(tempProdukt, price);
+			}else{
+				registrierteProdukte.put(produkt, price);
+			}
 			this.priceDisplayMonitor.writeln(produkt.getProduktName(), price);
 		}
 	}
@@ -24,10 +32,9 @@ public class Kasse{
 		System.out.println("Vielen Dank fuer Ihren Einkauf");
 		System.out.println("Datum des Einkaufs: " + SimpleDateFormat.getDateInstance().format(new Date()));
 		System.out.println("-------------------");
-		for(Map.Entry<Produkt,Double> entry : registrierteProdukte.entrySet()){
-			String markenName = entry.getKey().getMarkenName();
-			if(!isListedSortiment(entry.getKey())){ markenName = "Ausverkauf";}
-			System.out.println("Markenname: "+markenName 
+		// sieht gut aus
+		for(Map.Entry<Produkt,Double> entry : sortProducts(registrierteProdukte)){
+			System.out.println("Markenname: "+ entry.getKey().getMarkenName()
 							+ " Produktname: "+ entry.getKey().getProduktName()
 							+ " Preis " + entry.getValue());
 		}
@@ -38,7 +45,7 @@ public class Kasse{
 	}
 
 	private boolean isListedSortiment(Produkt produkt){
-		SortimentEintrag eintrag = new SortimentEintrag(produkt.getMarkenName(), produkt.getMarkenName(), "Kaufhaus", produkt.getPreisNetto());
+		SortimentEintrag eintrag = new SortimentEintrag(produkt.getMarkenName(), produkt.getProduktName(), "Kaufhaus", produkt.getPreisNetto());
 		SortimentEintrag[] sortiment = Sortiment.getInstance().getSortimentEintraege();
 		for(int i = 0; i < sortiment.length; i++){
 			if(sortiment[i] != null && sortiment[i].equals(eintrag)){
@@ -66,7 +73,7 @@ public class Kasse{
 		for(Map.Entry<Produkt,Double> entry : registrierteProdukte.entrySet()){
 			summe += entry.getValue();
 		}
-		return summe;
+		return round(summe,2);
 	}
 
 	private double calculateAvgPrice(){
@@ -79,8 +86,17 @@ public class Kasse{
 		return round((summe / count),2);
 	}
 
-	private Map<Produkt,Double> sortProducts(Map<Produkt,Double> warenkorb){
-		Map<Produkt,Double> test = new HashMap<Produkt, Double>();
-		return test;
+	private List<Map.Entry<Produkt,Double>> sortProducts(Map<Produkt,Double> warenkorb){
+		List<Map.Entry<Produkt, Double>> list = new ArrayList<>(warenkorb.entrySet());
+		Collections.sort(list, new Comparator<Map.Entry<Produkt, Double>>() {
+			public int compare(Map.Entry<Produkt, Double> one, Map.Entry<Produkt, Double> two) {
+				int nameResult = one.getKey().getMarkenName().compareTo(two.getKey().getMarkenName());
+				if (nameResult == 0) {
+					return one.getValue().compareTo(two.getValue());
+				}
+				return nameResult;
+			}
+		});
+		return list;
 	}
 }
