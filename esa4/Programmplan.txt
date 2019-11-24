@@ -1,7 +1,96 @@
-Erzeugt Klassen:
+Erzeugte Klassen:
 
-Lager
-SortimentEintrag
-LagerPosten
+LagerPosten -> Paket: waren
+Lager -> Paket: waren
+SortimentEintrag -> Paket: waren
+Sortiment -> Paket: waren
+Kasse -> Paket: handelsapp
 
-Methoden:
+
+Methoden nach Klassen geordnet:
+
+
+LagerPosten:
+getProdukt
+  Gibt das Produkt von dem Lagerposten zurück
+
+getAnzahl
+  Gibt die Anzahl des Lagerposten zurück
+
+addProdukt
+  Erhöht die Anzahl des Lagerpostens
+
+takeProdukt
+  Verringert die Anzahl des Lagerpostens
+
+
+
+Lager:
+getLagerPosten
+  Gibt die 4 Lagerplätze zurück
+
+addProdukt
+  Fügt ein (evtl.) neues Produkt einem Lagerposten hinzu, wenn es schon vorhanden ist wird nur die Anzahl erhöht
+
+takeProdukt
+  Verringert die Anzahl eines bestimmten Produktes aus dem Lager
+
+printLager
+  Das Lager wird lesbar ausgegeben. Zu jedem Produkt werden Markenname, Produktname, Nettopreis und Anzahl ausgegeben
+
+cleanLager
+  Sobald die Anzahl eines Produktes 0 erreicht, wird der Lagerposten geräumt, da ein Produkt mit der Anzahl 0 keinen Platz mehr im Lager belegt
+
+
+
+SortimentEintrag:
+getMarkenName
+  Gibt den Markennamen zurück
+
+getProduktName
+  Gibt den Produktnamen zurück
+
+getBezugsquelle
+  Gibt die Bezugsquelle des Produktes zurück
+
+getPreisNetto
+  Gibt den Nettopreis des Produktes zurück
+
+equals (override)
+  Methode zum Vergleicher zweier Produkte (Methode equals wird dabei überschrieben)
+
+
+
+Sortiment:
+addSortimentEintrag
+  Fügt dem Sortiment einen neuen Eintrag hinzu. Es wird geprüft, ob der Eintrag schon im Sortiment vorhanden ist
+
+deleteSortimentEintragRandom
+  Ein zufällig ausgewählter Eintrag wird aus dem Sortiment entfernt
+
+printSortiment
+  Das Sortiment wird lesbar ausgegeben. Alle Eigenschaften der Produkte werden ausgegeben
+
+
+Kasse:
+registriereWare
+  Registriert ein Produkt mit einer Anzahl und gibt die Summe des Produktes aus
+
+druckeKassenzettel
+  Druckt den Kassenbon mit allen Produkten und zusätzlichen Infos wie Datum und Grußwort.
+
+isListedSortiment
+  
+
+calculatePrice
+  Berechnet den Gesamtpreis zu einem Produkt inkl. Anzahl mit 19% Umsatzsteuer
+
+round
+  Rundet die Summe auf 2 Nachkommastellen
+
+calculateSumme
+  Berechnet die Gesamtsumme aller gekauften Produkte
+
+calculateAvgPrice
+  Berechnet den Durchschnittspreis der gekauften Produkte
+
